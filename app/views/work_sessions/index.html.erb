@@ -3,3 +3,22 @@
   <button id="stop">作業終了</button>
 </div>
 <div id="message"></div>
+<h1>作業履歴</h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>開始時間</th>
+      <th>終了時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @work_sessions.each do |session| %>
+      <tr>
+        <td><%= session.id %></td>
+        <td><%= session.start_time %></td>
+        <td><%= session.end_time || "作業中" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
