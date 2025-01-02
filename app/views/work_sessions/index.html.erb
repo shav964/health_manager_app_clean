@@ -1,8 +1,10 @@
 <div>
-  <button id="start">作業開始</button>
-  <button id="stop">作業終了</button>
+  <%= button_to '作業開始', work_sessions_path, method: :post, form: { data: { turbo_stream: true } }, class: 'button' %>
+  <%= button_to '作業終了', '#', method: :patch, class: 'button', id: 'stop' %>
 </div>
+
 <div id="message"></div>
+
 <h1>作業履歴</h1>
 <table>
   <thead>
@@ -12,14 +14,7 @@
       <th>終了時間</th>
     </tr>
   </thead>
-  <tbody>
-  <% @work_sessions.each do |session| %>
-    <tr>
-      <td><%= session.id %></td>
-      <td><%= session.start_time.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') %></td>
-      <td><%= session.end_time ? session.end_time.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') : "作業中" %></td>
-    </tr>
-  <% end %>
-  
+  <tbody id="work_sessions">
+    <%= render partial: 'work_sessions/work_session', collection: @work_sessions %>
   </tbody>
 </table>
