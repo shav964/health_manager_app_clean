@@ -1,2 +1,4 @@
-<%= turbo_stream.append 'work_sessions', partial: 'work_sessions/work_session', locals: { work_session: @work_session } %>
-<%= turbo_stream.update 'message', "<div>作業開始を記録しました！</div>".html_safe %>
+# app/views/work_sessions/create.turbo_stream.erb
+<%= turbo_stream.prepend "work_sessions", partial: "work_sessions/work_session", locals: { work_session: @work_session } %>
+
+

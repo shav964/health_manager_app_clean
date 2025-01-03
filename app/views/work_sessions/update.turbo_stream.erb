@@ -1,2 +1,3 @@
-<%= turbo_stream.replace "work_session_#{@work_session.id}", partial: 'work_sessions/work_session', locals: { work_session: @work_session } %>
-<%= turbo_stream.update 'message', "<div>作業終了を記録しました！</div>".html_safe %>
+<%= turbo_stream.replace "work_sessions" do %>
+  <%= render partial: "work_sessions/work_session", collection: @work_sessions %>
+<% end %>
