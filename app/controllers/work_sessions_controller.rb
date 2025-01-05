@@ -27,4 +27,16 @@ class WorkSessionsController < ApplicationController
       render json: { error: @work_session.errors.full_messages }
     end
   end
+  def destroy
+    @work_session = WorkSession.find(params[:id])
+    if @work_session.destroy
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.remove("work_session_#{@work_session.id}") }
+        format.html { redirect_to work_sessions_path, notice: '作業を削除しました。' }
+      end
+    else
+      render json: { error: @work_session.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+  
 end
