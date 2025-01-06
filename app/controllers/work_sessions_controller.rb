@@ -1,7 +1,8 @@
 # app/controllers/work_sessions_controller.rb
 class WorkSessionsController < ApplicationController
   def index
-    @work_sessions = WorkSession.all.order(created_at: :desc)
+    @work_sessions = WorkSession.where(start_time: Time.zone.today.all_day).order(created_at: :desc) # 今日の作業のみ取得
+    @total_time = calculate_total_time(@work_sessions) # 合計時間を計算
   end
 
   def create
@@ -39,7 +40,15 @@ class WorkSessionsController < ApplicationController
     end
   end
   private
-
+  def calculate_total_time(work_sessions)
+    work_sessions.sum do |session|
+      if session.end_time.present?
+        session.end_time - session.start_time # 終了したセッションの時間
+      else
+        Time.current - session.start_time # 進行中のセッションの時間を現在時刻まで計算
+      end
+    end
+  end
   def set_work_session
     @work_session = WorkSession.find(params[:id])
   end

@@ -8,6 +8,11 @@
 <h1>現在の作業時間</h1>
 <div id="timer" style="font-size: 2em; color: blue;">00:00:00</div> <!-- 経過時間表示領域 -->
 
+<h2>今日の作業時間合計</h2>
+<div id="total_time_today" style="font-size: 1.5em; color: green;">
+ <%= distance_of_time_in_words(@total_time) %>
+</div>
+
 <h1>作業履歴</h1>
 <table>
   <thead>
@@ -17,6 +22,7 @@
       <th>終了時間</th>
     </tr>
   </thead>
+
   <tbody id="work_sessions">
     <%= render partial: 'work_sessions/work_session', collection: @work_sessions %>
   </tbody>
