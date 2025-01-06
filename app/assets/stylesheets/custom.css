@@ -1,0 +1,22 @@
+#timer {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: #4CAF50; /* 作業中は緑色 */
+  border: 2px solid #4CAF50;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+#timer.alert {
+  color: #FF5722; /* 休憩タイム時は赤色 */
+  border-color: #FF5722;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}

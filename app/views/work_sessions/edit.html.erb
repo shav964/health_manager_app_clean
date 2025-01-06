@@ -1,0 +1,17 @@
+<h1>作業セッションの更新</h1>
+
+<%= form_with model: @work_session, local: true do |f| %>
+  <div>
+    <%= f.label :attribute1, "属性1（例: 作業名）" %><br>
+    <%= f.text_field :attribute1 %>
+  </div>
+
+  <div>
+    <%= f.label :attribute2, "属性2（例: 時間）" %><br>
+    <%= f.number_field :attribute2 %>
+  </div>
+
+  <div>
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>

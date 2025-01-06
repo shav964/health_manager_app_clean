@@ -1,5 +1,5 @@
 import { Turbo } from "@hotwired/turbo-rails";
-
+import "./stretch_timer";
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('stop').addEventListener('click', () => {
     const rows = document.querySelectorAll('table tbody tr');
