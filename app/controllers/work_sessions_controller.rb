@@ -38,5 +38,9 @@ class WorkSessionsController < ApplicationController
       render json: { error: @work_session.errors.full_messages }, status: :unprocessable_entity
     end
   end
-  
+  private
+
+  def set_work_session
+    @work_session = WorkSession.find(params[:id])
+  end
 end

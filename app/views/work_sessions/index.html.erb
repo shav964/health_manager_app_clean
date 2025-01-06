@@ -3,10 +3,10 @@
   <%= button_to '作業終了', '#', method: :patch, class: 'button', id: 'stop' %>
 </div>
 
-<div id="message"></div>
+<div id="message" style="margin: 20px 0; font-size: 1.2em; font-weight: bold;"></div>
 
 <h1>現在の作業時間</h1>
-<div id="timer">00:00:00</div> <!-- 経過時間表示領域 -->
+<div id="timer" style="font-size: 2em; color: blue;">00:00:00</div> <!-- 経過時間表示領域 -->
 
 <h1>作業履歴</h1>
 <table>
@@ -20,6 +20,4 @@
   <tbody id="work_sessions">
     <%= render partial: 'work_sessions/work_session', collection: @work_sessions %>
   </tbody>
-
-
 </table>
