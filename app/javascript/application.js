@@ -30,19 +30,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let timerInterval;
   let startTime;
 
-  // 作業開始時の処理
+ 
   document.querySelector('form[method="post"]').addEventListener('submit', () => {
-    startTime = new Date(); // 現在の時間を保存
-    startTimer(); // タイマー開始
+    startTime = new Date(); 
+    startTimer(); 
   });
 
-  // タイマーを開始する関数
+ 
   function startTimer() {
-    if (timerInterval) clearInterval(timerInterval); // 既存タイマーをリセット
+    if (timerInterval) clearInterval(timerInterval); 
 
     timerInterval = setInterval(() => {
       const now = new Date();
-      const elapsed = new Date(now - startTime); // 経過時間を計算
+      const elapsed = new Date(now - startTime); 
 
       const hours = String(elapsed.getUTCHours()).padStart(2, '0');
       const minutes = String(elapsed.getUTCMinutes()).padStart(2, '0');
@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
   }
 
-  // 作業終了時の処理
+ 
   document.getElementById('stop').addEventListener('click', () => {
-    if (timerInterval) clearInterval(timerInterval); // タイマー停止
-    document.getElementById('timer').innerText = '00:00:00'; // 初期状態にリセット
+    if (timerInterval) clearInterval(timerInterval); 
+    document.getElementById('timer').innerText = '00:00:00'; 
   });
 });

@@ -1,15 +1,14 @@
-# app/controllers/work_sessions_controller.rb
 class WorkSessionsController < ApplicationController
   def index
-    @work_sessions = WorkSession.where(start_time: Time.zone.today.all_day).order(created_at: :desc) # 今日の作業のみ取得
-    @total_time = calculate_total_time(@work_sessions) # 合計時間を計算
+    @work_sessions = WorkSession.where(start_time: Time.zone.today.all_day).order(created_at: :desc)
+    @total_time = calculate_total_time(@work_sessions) 
   end
 
   def create
     @work_session = WorkSession.new(start_time: Time.current)
     if @work_session.save
       respond_to do |format|
-        format.turbo_stream # Turbo Stream形式でレスポンスを返す
+        format.turbo_stream 
         format.html { redirect_to work_sessions_path, notice: "作業開始を記録しました！" }
       end
     else
@@ -21,7 +20,7 @@ class WorkSessionsController < ApplicationController
     @work_session = WorkSession.find(params[:id])
     if @work_session.update(end_time: Time.current)
       respond_to do |format|
-        format.turbo_stream # Turbo Stream形式でレスポンスを返す
+        format.turbo_stream 
         format.html { redirect_to work_sessions_path, notice: "作業終了を記録しました！" }
       end
     else
@@ -43,9 +42,9 @@ class WorkSessionsController < ApplicationController
   def calculate_total_time(work_sessions)
     work_sessions.sum do |session|
       if session.end_time.present?
-        session.end_time - session.start_time # 終了したセッションの時間
+        session.end_time - session.start_time 
       else
-        Time.current - session.start_time # 進行中のセッションの時間を現在時刻まで計算
+        Time.current - session.start_time 
       end
     end
   end
